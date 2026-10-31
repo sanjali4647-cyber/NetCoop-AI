@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://netcoop.local/schemas/message.schema.json",
+  "title": "NetCoop Message Protocol message",
+  "type": "object",
+  "required": ["protocol", "message_id", "incident_id", "task_id", "type", "sender", "recipient", "payload"],
+  "properties": {
+    "protocol": {"const": "ncmp/1.0"},
+    "message_id": {"type": "string", "format": "uuid"},
+    "incident_id": {"type": "string"},
+    "task_id": {"type": "string"},
+    "type": {"enum": ["finding", "report", "conflict_notice", "probe_request", "probe_response"]},
+    "sender": {"type": "string"},
+    "recipient": {"type": "string"},
+    "payload": {"type": "object"}
+  },
+  "additionalProperties": false
+}

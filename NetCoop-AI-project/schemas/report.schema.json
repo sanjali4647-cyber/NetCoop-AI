@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://netcoop.local/schemas/report.schema.json",
+  "title": "NetCoop AI diagnostic report",
+  "type": "object",
+  "required": ["incident_id", "status", "suspected_root_cause", "confidence", "affected_devices", "supporting_evidence", "alternative_causes", "recommended_actions", "evidence_sources", "limitations"],
+  "properties": {
+    "incident_id": {"type": "string", "minLength": 1},
+    "status": {"enum": ["diagnosed", "tentative", "insufficient_evidence", "no_fault_found"]},
+    "suspected_root_cause": {"type": "string"},
+    "root_cause_code": {"type": "string"},
+    "confidence": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+    "confidence_category": {"enum": ["High", "Medium", "Low", "Unknown"]},
+    "confidence_breakdown": {"type": "object", "required": ["belief_top", "coverage", "agreement", "method"]},
+    "affected_devices": {"type": "array", "items": {"type": "string"}},
+    "supporting_evidence": {"type": "array", "items": {"type": "object", "required": ["device_id", "metric", "value", "unit", "timestamp", "source", "interpretation"]}},
+    "alternative_causes": {"type": "array", "items": {"type": "object", "required": ["cause", "belief"]}},
+    "conflicts": {"type": "array", "items": {"type": "object", "required": ["between", "K", "resolved_by"]}},
+    "recommended_actions": {"type": "array", "items": {"type": "string"}},
+    "evidence_sources": {"type": "array", "items": {"type": "string"}},
+    "limitations": {"type": "array", "items": {"type": "string"}}
+  },
+  "additionalProperties": false
+}

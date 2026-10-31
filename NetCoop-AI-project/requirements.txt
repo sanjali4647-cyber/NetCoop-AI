@@ -1,0 +1,2 @@
+# Runtime dependencies
+# Python 3.9+ standard library only. No pip packages are required.
